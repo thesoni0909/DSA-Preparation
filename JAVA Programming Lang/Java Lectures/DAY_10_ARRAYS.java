@@ -41,6 +41,7 @@ public class DAY_10_ARRAYS {
                     maxSum=currSum;
                 }
             }
+            // hgh
         }
         System.out.println("The maximum value of sum of subarrays of a array is "+maxSum);
     }
