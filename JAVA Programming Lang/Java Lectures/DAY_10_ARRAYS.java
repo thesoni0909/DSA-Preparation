@@ -46,14 +46,107 @@ public class DAY_10_ARRAYS {
     }
 
     //Kadane's Algorithm(very optimised solution) : finds maximum value of sum of subarrays found in an array.
+    //works only for an array which consists of  positive and combination of positive and negative numbers but not for an array which consists negative numbers only
     static void kadanes(int arr[]){
-        int cs=0; int ms=0;
-        for(int i=0;i<arr.length;i++)
+        int cs=0; int ms=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            cs=cs+arr[i];
+            if(cs<0){
+                cs=0;
+            }
+            ms=Math.max(ms, cs);
+        }
+        System.out.println("The maximum sum of subarrays found in an array : "+ms);
     }
+
+    //works for every type of integer array
+    static void kadane_forall(int arr[]){
+        int cs=0; int ms=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            cs=Math.max(arr[i], cs+arr[i]);
+            ms=Math.max(ms, cs);
+        }
+        System.out.println("The maximum sum of subarrays found in an array : "+ms);
+    }
+
+    //Trapping Rainwater 
+    //Brute force approach
+    static void trapped_water(int arr[]){
+        int len=arr.length; int total_tw=0; int maxright; int maxleft;
+        int waterLevel; int tw;
+        for(int i=0;i<len;i++){
+            maxright=0;
+            maxleft=0;
+            for(int j=i+1;j<len;j++){
+                if(arr[j]>maxright){
+                    maxright=arr[j];
+                }
+            }
+            for(int j=i-1;j>=0;j--){
+                if(arr[j]>maxleft){
+                    maxleft=arr[j];
+                }
+            }
+            waterLevel=Math.min(maxleft, maxright);
+            tw=(waterLevel-arr[i])*1;
+            if(tw<0){
+                tw=0;
+            }
+            System.out.print("tw = "+tw+", ");
+            total_tw=total_tw+tw;
+        }
+        System.out.println("");
+        System.out.println("The total trapped water = "+total_tw);
+    }
+
+    //Optimised approach
+    static void trapped_water01(int arr[]){
+        int len=arr.length; int total_tw=0; int tw; int waterLevel;
+        //calculate maxleft for each values of given array and then store it in array
+        int maxleft[]=new int[arr.length];
+        maxleft[0]=arr[0];
+        for(int i=1;i<len;i++){
+            maxleft[i]=Math.max(maxleft[i-1],arr[i]);
+        }
+        //calculate maxright for each values of given array and then store it in array
+        int maxright[]=new int[arr.length];
+        maxright[len-1]=arr[len-1];
+        for(int i=len-2;i>=0;i--){
+            maxright[i]=Math.max(arr[i],maxright[i+1]);
+        }
+        //calculate total trapped water of given array
+        for(int i=0;i<len;i++){
+            waterLevel=Math.min(maxright[i],maxleft[i]);
+            tw=waterLevel-arr[i];
+            total_tw+=tw;
+        }
+        System.out.println("The total trapped water = "+total_tw);
+    }
+
+    //Buy and Sell Stocks
+    static int stocks(int arr[]){
+        int len=arr.length; int total_profit=0; int minstock=arr[0]; int maxprofit=0;
+        for(int i=1;i<len;i++){
+            minstock=Math.min(minstock,arr[i]);
+            total_profit=arr[i]-minstock;
+            maxprofit=Math.max(total_profit,maxprofit);
+        }
+        return maxprofit;
+    }
+
 
     public static void main(String[] args) {
         int numbers[]={1,-2,6,-1,3};
         subarrays(numbers);
         maxSum(numbers);
+        kadanes(numbers);
+        kadane_forall(numbers);
+        int height[]={4,2,0,6,3,2,5};
+        trapped_water(height);
+        trapped_water01(height);
+        int prices[]={7,1,5,3,6,4};
+        int profit=stocks(prices);
+        System.out.println("The profit you gain from the stock you have purchased is "+profit);
+
     }
 }
