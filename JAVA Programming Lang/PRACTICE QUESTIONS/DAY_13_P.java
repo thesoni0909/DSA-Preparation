@@ -81,8 +81,7 @@ public class DAY_13_P {
         String s1="race";
         String s2="care";
         isAnagrams(s1, s2);
-        
-        
 
+        sc.close();
     }
 }
