@@ -129,6 +129,19 @@ public class DAY_14 {
         System.out.println(ans);
     }
 
+    // Modular Exponentiation
+    static void ModExpo(int a, int n, int m){
+        int ans = 1;
+        while(n>0){
+            if((n&1)!=0){
+                ans=(ans*a)%m;
+            }
+            a=(a*a)%m;
+            n=n>>1;
+        }
+        System.out.println(ans);
+    }
+
     public static void main(String[] args) {
 
         // Bitwise operators
@@ -140,20 +153,31 @@ public class DAY_14 {
         System.out.println(6>>1);
 
         EvenOrOdd(5);
+
         System.out.println(GetithBit(10, 2));
+
         System.out.println(SetithBit(10, 2));
+
         System.out.println(ClearithBit(10, 1));
+        
         UpdateithBit(10, 1);
         UpdateithBit01(10, 1, 0);
+
         ClearLastiBits(15, 2);
+
         ClearRangeBits(2515, 2, 7);
+
         if(IsPowerOf2(8)){
             System.out.println("The given number is a power of 2");
         }
         else{
             System.out.println("The given number is not a power of 2");
         }
+
         System.out.println("Set bits in given number is "+CountSetBits(7));
-        FastExpo(3, 5);
+
+        FastExpo(2, 13);
+
+        ModExpo(10, 100, 9);
     }
 }
