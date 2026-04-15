@@ -24,9 +24,30 @@ public class DAY_17_P {
     }
 
     // Questioin 4:
-    static void countOfsubStr(String str){
-        int k=0; String str1 = "";
-        
+    static void countOfsubStr(String str, String newStr, int si, int ei, int count){
+        if(si>ei){
+            System.out.println(count);
+            return;
+        }
+        for(int i=si; i<=str.length()-1; i++){
+            newStr+=str.charAt(i);
+            if(newStr.charAt(0)==newStr.charAt(newStr.length()-1)){
+                count++;
+            }
+        }
+        newStr="";
+        countOfsubStr(str, newStr, si+1, ei, count);
+    }
+
+    // Question 2:
+    static void convertIntoString(int num, String[] arr, StringBuilder newStr){
+        if(num==0){
+            System.out.println(newStr);
+            return;
+        }
+        int lastDig = num%10;
+        newStr.insert(0, arr[lastDig]+" ");
+        convertIntoString(num/10, arr, newStr);
     }
 
     public static void main(String[] args) {
@@ -36,12 +57,12 @@ public class DAY_17_P {
         Sample Input: arr[ ] = {3, 2, 4, 5, 6, 2, 7, 2, 2},key = 2
         Sample Output: 1 5 7 8
         */
-        // int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
-        // printIndices(arr, 0, 2);
-        // System.out.println();
+        int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
+        printIndices(arr, 0, 2);
+        System.out.println();
 
         // Question 3 : Write a program to find Length of a String using Recursion.
-        // findLengthOfStr("Vivek Sharma",0, 0);
+        findLengthOfStr("Vivek Sharma",0, 0);
 
         /*
         Question 4 : We are given a string S, we need to find the count of all contiguous substrings
@@ -52,7 +73,17 @@ public class DAY_17_P {
         Out of the above substrings, there are 7 substrings:a,abca,b,bcab,c,aandb.
         So,only 7 contiguous substrings start and end with the same character.
         */
-        countOfsubStr("abcab");
+        String str = "aba";
+        countOfsubStr(str, "", 0, str.length()-1, 0);
 
+        /*
+         * Question 2 : You are given a number (eg - 2019), convert it into a String of
+         * english like “two zero one nine”. Use a recursive function to solve this
+         * problem.
+         * NOTE-The digits of the number will only be in the range 0-9 and the last digit of a number can't be 0.
+         */
+        int num = 1947;
+        String arr1[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        convertIntoString(num, arr1, new StringBuilder(""));
     }
 }
