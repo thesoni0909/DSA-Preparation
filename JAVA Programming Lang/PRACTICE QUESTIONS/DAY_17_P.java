@@ -50,6 +50,20 @@ public class DAY_17_P {
         convertIntoString(num/10, arr, newStr);
     }
 
+    // Question 5 :
+    static void towerOfhanoi(int n, String S, String H, String D){
+        if(n==1){
+            System.out.println(n+" Disk is Transferred from "+S+" to "+D);
+            return;
+        }
+        // transfer top n-1 disks from src to helper using dest as 'helper'
+        towerOfhanoi(n-1, S, D, H);
+        // transfer nth(single disk left) from src to dest
+        System.out.println(n+" Disk is Transferred from "+S+" to "+D);
+        // transfer n-1 disks from helper to dest using src as 'helper
+        towerOfhanoi(n-1, H, S, D);
+    }
+
     public static void main(String[] args) {
         /*
         Question 1: For a given integer array of size N. You have to find all the occurrences(indices)
@@ -85,5 +99,9 @@ public class DAY_17_P {
         int num = 1947;
         String arr1[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         convertIntoString(num, arr1, new StringBuilder(""));
+
+        // Question 5 : Tower of Hanoi
+        int disks = 3;
+        towerOfhanoi(disks, "Source", "Helper", "Destination");
     }
 }
