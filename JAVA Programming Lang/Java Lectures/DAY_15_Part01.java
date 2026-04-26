@@ -1,6 +1,6 @@
 // OOPS - Object Oriented Programming Language
 
-public class DAY_15{
+public class DAY_15_Part01{
     public static void main(String[] args) {
         // Class Pen
         // Object p1

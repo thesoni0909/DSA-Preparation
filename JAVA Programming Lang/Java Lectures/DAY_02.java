@@ -1,7 +1,7 @@
 // variables and datatypes
 
 import java.util.*;
-public class JavaBasics{
+public class DAY_02{
     public static void main(String[] args) {
 
         //output in java

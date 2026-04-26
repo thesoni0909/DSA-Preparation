@@ -1,6 +1,6 @@
 //operators and their precedence and associativity
 
-public class Day03 {
+public class DAY_03 {
     public static void main(String[] args) {
         //artihtmetic operator
         //binary operators
