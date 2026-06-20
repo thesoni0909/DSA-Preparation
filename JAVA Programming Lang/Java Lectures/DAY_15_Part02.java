@@ -3,7 +3,7 @@
 public class DAY_15_Part02 {
     public static void main(String[] args) {
 
-        // class Calculator 
+        // class Calculator
         // Object calc
         Calculator calc = new Calculator();
         System.out.println(calc.sum(2, 12));
