@@ -135,6 +135,49 @@ public class LinkedList1 {
         }
     }
 
+    // Reverse a linked list
+
+    // method 01 : derived by me
+    // public void ReverseLL(){
+    //     if(size==0){
+    //         System.out.println("Linked List is empty , can't be reversed!");
+    //         return;
+    //     }
+    //     if(size==1){
+    //         print();
+    //         System.out.println("Reverse of linkedlist is original linkedlist itself!");
+    //         return;
+    //     }
+    //     Node prev = Head;
+    //     Node curr = prev.next;
+    //     Node front;
+    //     Head = Tail;
+    //     Tail = prev;
+    //     Tail.next = null;
+    //     while(curr!=null){
+    //         front = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = front;
+    //     }
+    //     print();
+    // }
+
+    // method 02 : standard
+    public void ReverseLL2(){
+        Node prev = null;
+        Node curr = Tail = Head; //java evaluates assignment operator from right to left
+        Node front;
+        while(curr!=null){
+            front = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = front;
+        }
+        Head = prev;
+        print();
+    }
+
     // function for printing the nodes of linked list
     public void print(){
         Node temp = Head;
@@ -163,10 +206,10 @@ public class LinkedList1 {
 
         list.addLast(1);
         list.addLast(2);
-        list.addLast(3);
-        list.addLast(4);
-        list.addMiddle(2, 9);
-        list.addLast(10);
+        // list.addLast(3);
+        // list.addLast(4);
+        // list.addMiddle(2, 9);
+        // list.addLast(10);
         list.print();
         System.out.println("Size of Linked List : "+LinkedList1.size);
 
@@ -202,12 +245,16 @@ public class LinkedList1 {
         // }
 
         // Recursive Search method 2
-        int val3 = list.Rsearch2(5, Head);
-        if(val3==-1){
-            System.out.println("key is not present in LL!");
-        }
-        else{
-            System.out.println("key is present at "+val3+" index");
-        }
+        // int val3 = list.Rsearch2(5, Head);
+        // if(val3==-1){
+        //     System.out.println("key is not present in LL!");
+        // }
+        // else{
+        //     System.out.println("key is present at "+val3+" index");
+        // }
+
+        // Reverse LL
+        // list.ReverseLL();
+        // list.ReverseLL2();
     }
 }
