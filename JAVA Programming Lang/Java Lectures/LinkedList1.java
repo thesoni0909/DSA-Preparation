@@ -40,7 +40,7 @@ public class LinkedList1 {
         Tail = newNode;
     }
 
-    // function for adding nodes in middle of a linkedlist
+    // function for adding nodes at specific position of a linkedlist
     public void addMiddle(int index, int data){
         if(index==0){
             addFirst(data);
@@ -137,31 +137,31 @@ public class LinkedList1 {
 
     // Reverse a linked list
 
-    // method 01 : derived by me
-    // public void ReverseLL(){
-    //     if(size==0){
-    //         System.out.println("Linked List is empty , can't be reversed!");
-    //         return;
-    //     }
-    //     if(size==1){
-    //         print();
-    //         System.out.println("Reverse of linkedlist is original linkedlist itself!");
-    //         return;
-    //     }
-    //     Node prev = Head;
-    //     Node curr = prev.next;
-    //     Node front;
-    //     Head = Tail;
-    //     Tail = prev;
-    //     Tail.next = null;
-    //     while(curr!=null){
-    //         front = curr.next;
-    //         curr.next = prev;
-    //         prev = curr;
-    //         curr = front;
-    //     }
-    //     print();
-    // }
+    // method 01 :
+    public void ReverseLL(){
+        if(size==0){
+            System.out.println("Linked List is empty , can't be reversed!");
+            return;
+        }
+        if(size==1){
+            print();
+            System.out.println("Reverse of linkedlist is original linkedlist itself!");
+            return;
+        }
+        Node prev = Head;
+        Node curr = prev.next;
+        Node front;
+        Head = Tail;
+        Tail = prev;
+        Tail.next = null;
+        while(curr!=null){
+            front = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = front;
+        }
+        print();
+    }
 
     // method 02 : standard
     public void ReverseLL2(){
@@ -176,6 +176,75 @@ public class LinkedList1 {
         }
         Head = prev;
         print();
+    }
+
+    // find and remove nth node from end
+    public void removeNth(int n){
+        int reqSize = size-n;
+        if(reqSize==0){
+            if(size==1){
+                Tail = null;
+                Head = null;
+            }
+            else{
+                Head = Head.next;
+            }
+            size--;
+            return;
+        }
+        Node prev = Head;
+        for(int i=0; i<reqSize-1; i++){
+            prev = prev.next;
+        }
+        if(reqSize==size-1){
+            Tail = prev;
+            prev.next = null;
+            size--;
+            return;
+        }
+        Node curr = prev.next;
+        prev.next = curr.next;
+        size--;
+    }
+
+    // finding mid Node of Linked List(slow and fast pointer approach)
+    public Node midNode(){
+        Node slow = Head;
+        Node fast = Head;
+        while((fast!=null) && (fast.next!=null)){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    // check if LL is palindrome or not
+    public boolean checkPalindrome(){
+        if(Head == null || Head.next == null){
+            return true;
+        }
+        Node midNode = midNode();
+        Node prev = null;
+        Node curr = midNode;
+        Node front;
+        while(curr!=null){
+            front = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = front;
+        }
+        Node left = Head;
+        Node right = prev;
+        while (right!=null) {
+            if(left.data == right.data){
+                left = left.next;
+                right = right.next;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
     }
 
     // function for printing the nodes of linked list
@@ -205,11 +274,14 @@ public class LinkedList1 {
         // list.print();
 
         list.addLast(1);
+        list.addLast(5);
         list.addLast(2);
-        // list.addLast(3);
-        // list.addLast(4);
-        // list.addMiddle(2, 9);
+        list.addLast(9);
+        list.addMiddle(5, 6);
         // list.addLast(10);
+        // list.addLast(11);
+        // list.addLast(12);
+        // list.addLast(13);
         list.print();
         System.out.println("Size of Linked List : "+LinkedList1.size);
 
@@ -256,5 +328,17 @@ public class LinkedList1 {
         // Reverse LL
         // list.ReverseLL();
         // list.ReverseLL2();
+
+        // remove nth node from end
+        // list.removeNth(1);
+        // list.print();
+        // System.out.println("Size of Linked List : "+LinkedList1.size);
+
+        // finding mid Node
+        // Node midNode = list.midNode();
+        // System.out.println(midNode.data);
+
+        // check if LL is palindrome or not
+        // System.out.println(list.checkPalindrome());
     }
 }
