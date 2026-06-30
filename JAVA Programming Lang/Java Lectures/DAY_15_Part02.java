@@ -46,14 +46,14 @@ public class DAY_15_Part02 {
         b.eatMeat(); b.eatPlants();
 
         // class Student
-        Student s1 = new Student();
-        s1.rollNo = 24;
-        s1.school = "JMV";
-        Student s2 = new Student();
-        System.out.println(s2.school);
+        // Student s1 = new Student();
+        // s1.rollNo = 24;
+        // s1.school = "JMV";
+        // Student s2 = new Student();
+        // System.out.println(s2.school);
 
         // class Stationary
-        Pen p1 = new Pen();
+        // Pen p1 = new Pen();
     }
 }
 

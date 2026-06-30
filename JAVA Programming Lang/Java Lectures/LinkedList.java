@@ -1,6 +1,6 @@
 // Linked List (Part 01)
 
-public class LinkedList1 {
+public class LinkedList {
 
     public static class Node{
         int data;
@@ -10,6 +10,7 @@ public class LinkedList1 {
             this.next = null;
         }
     }
+    
     public static Node Head;
     public static Node Tail;
     public static int size;
@@ -247,6 +248,20 @@ public class LinkedList1 {
         return true;
     }
 
+    // function for detecting a cycle in LL
+    public boolean detectCycle(){
+        Node slow = Head;
+        Node fast = Head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
     // function for printing the nodes of linked list
     public void print(){
         Node temp = Head;
@@ -262,7 +277,7 @@ public class LinkedList1 {
     }
 
     public static void main(String[] args) {
-        LinkedList1 list = new LinkedList1();
+        LinkedList list = new LinkedList();
         // list.print();
         // list.addFirst(1);
         // list.print();
@@ -273,17 +288,17 @@ public class LinkedList1 {
         // list.addLast(4);
         // list.print();
 
-        list.addLast(1);
-        list.addLast(5);
-        list.addLast(2);
-        list.addLast(9);
-        list.addMiddle(5, 6);
+        // list.addLast(1);
+        // list.addLast(5);
+        // list.addLast(2);
+        // list.addLast(9);
+        // list.addMiddle(5, 6);
         // list.addLast(10);
         // list.addLast(11);
         // list.addLast(12);
         // list.addLast(13);
-        list.print();
-        System.out.println("Size of Linked List : "+LinkedList1.size);
+        // list.print();
+        // System.out.println("Size of Linked List : "+LinkedList.size);
 
         // int val=list.removeFirst();
         // if(val==0){
@@ -340,5 +355,18 @@ public class LinkedList1 {
 
         // check if LL is palindrome or not
         // System.out.println(list.checkPalindrome());
+
+        // detect a cycle in LL
+        Head = new Node(1);
+        Head.next = new Node(2);
+        Head.next.next = new Node(3);
+        Head.next.next.next = new Node(4);
+        Head.next.next.next.next = Head.next.next;
+        if(list.detectCycle()){
+            System.out.println("Cycle exists!");
+        }
+        else{
+            System.out.println("Cycle does not exists!");
+        }
     }
 }
