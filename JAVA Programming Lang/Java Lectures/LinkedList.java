@@ -262,6 +262,36 @@ public class LinkedList {
         return false;
     }
 
+    //function for removing a cycle in LL
+    public void removeCycle(){
+
+        // detect cycle
+        Node slow = Head;
+        Node fast = Head;
+        boolean detect = false;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                detect = true;
+                break;
+            }
+        }
+        // find meeting point
+        if(detect == true){
+            slow = Head;
+            Node prev  = null;
+            while(slow != fast){
+                slow = slow.next;
+                prev = fast;
+                fast = fast.next;
+            }
+            // remove cycle -> last.next = null
+            prev.next = null;
+        }
+    }
+
+
     // function for printing the nodes of linked list
     public void print(){
         Node temp = Head;
@@ -362,6 +392,13 @@ public class LinkedList {
         Head.next.next = new Node(3);
         Head.next.next.next = new Node(4);
         Head.next.next.next.next = Head.next.next;
+        if(list.detectCycle()){
+            System.out.println("Cycle exists!");
+        }
+        else{
+            System.out.println("Cycle does not exists!");
+        }
+        list.removeCycle();
         if(list.detectCycle()){
             System.out.println("Cycle exists!");
         }
